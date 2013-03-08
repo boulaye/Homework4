@@ -1,0 +1,53 @@
+# copyright (c) Erica Boulay
+# Word Counter Program
+
+#create an empty dictionary to be used for words
+wordDict={}
+#create an empty list to import the .txt file into
+allWords=[]
+mstfrqWrd = ""
+mstfrqCnt = 0
+
+def loadWords(fileName):
+    global allWords
+#read the words from the .txt file
+    file = open(fileName, "r")
+#convert the words into a list
+    allWords = file.readlines()
+
+
+
+#begin with Deb's standard function call to main() REQUIRED**********
+def main():
+    fileName = input("Enter the name of the file: ")
+    loadWords(fileName)
+
+    #the actual dictionary function, where keys (words) are included
+    #values (frequency of words) are associated with those keys
+    for word in allWords:
+        if word in wordDict:
+            wordDict[word] = wordDict[word] + 1
+        else:
+            wordDict[word] = 1
+
+#    for word in wordDict:
+#        print (word, " Count:", wordDict[word])
+    
+    findMostFrequentWord()
+    print("The most frequent word is \"", mstfrqWrd.rstrip("\n"), "\" occuring", mstfrqCnt, "times.")
+    return 
+
+def findMostFrequentWord():
+    global mstfrqWrd
+    global mstfrqCnt
+    for word in wordDict:
+        #the key is the word
+        if wordDict[word] > mstfrqCnt:
+            mstfrqWrd = word
+            mstfrqCnt = wordDict[word]
+
+        
+main()
+
+
+    
